@@ -77,6 +77,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -85,6 +88,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -115,14 +121,70 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Src\BufferObject.h" />
+    <ClInclude Include="Src\Font.h" />
+    <ClInclude Include="Src\GameOverScene.h" />
+    <ClInclude Include="Src\GamePad.h" />
+    <ClInclude Include="Src\Geometry.h" />
+    <ClInclude Include="Src\GLFWEW.h" />
+    <ClInclude Include="Src\MainGameScene.h" />
+    <ClInclude Include="Src\Mesh.h" />
     <ClInclude Include="Src\Scene.h" />
+    <ClInclude Include="Src\Shader.h" />
+    <ClInclude Include="Src\Sprite.h" />
+    <ClInclude Include="Src\StatusScene.h" />
+    <ClInclude Include="Src\Terrain.h" />
+    <ClInclude Include="Src\Texture.h" />
     <ClInclude Include="Src\TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\BufferObject.cpp" />
+    <ClCompile Include="Src\Font.cpp" />
+    <ClCompile Include="Src\GameOverScene.cpp" />
+    <ClCompile Include="Src\GLFWEW.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="Src\MainGameScene.cpp" />
+    <ClCompile Include="Src\Mesh.cpp" />
     <ClCompile Include="Src\Scene.cpp" />
+    <ClCompile Include="Src\Shader.cpp" />
+    <ClCompile Include="Src\Sprite.cpp" />
+    <ClCompile Include="Src\StatusScene.cpp" />
+    <ClCompile Include="Src\Terrain.cpp" />
+    <ClCompile Include="Src\Texture.cpp" />
+    <ClCompile Include="Src\TitleScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Res\font.fnt" />
+    <None Include="Res\Sprite.frag" />
+    <None Include="Res\Sprite.vert" />
+    <None Include="Res\StaticMesh.frag" />
+    <None Include="Res\StaticMesh.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\font_0.tga" />
+    <Image Include="Res\font_1.tga" />
+    <Image Include="Res\Smash3D_MainGame.tga" />
+    <Image Include="Res\Smash3D_Menu.tga" />
+    <Image Include="Res\Smash3D_Result.tga" />
+    <Image Include="Res\Smash3D_Title.tga" />
+    <Image Include="Res\Terrain.tga" />
+    <Image Include="Res\TitleBack.tga" />
+    <Image Include="Res\TitleBg.tga" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" />
+    <Import Project="packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets" Condition="Exists('packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" />
+    <Import Project="packages\glm.0.9.9.500\build\native\glm.targets" Condition="Exists('packages\glm.0.9.9.500\build\native\glm.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets'))" />
+    <Error Condition="!Exists('packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets'))" />
+    <Error Condition="!Exists('packages\glm.0.9.9.500\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\glm.0.9.9.500\build\native\glm.targets'))" />
+  </Target>
 </Project>
